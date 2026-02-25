@@ -7,8 +7,9 @@ import { createClient } from '@supabase/supabase-js'
    WebSocket
 ---------------------------------------- */
 
-const wss = new WebSocketServer({ port: 3001 })
-console.log('WebSocket server running on ws://localhost:3001')
+const PORT = process.env.PORT || 3001
+const wss = new WebSocketServer({ port: PORT })
+console.log(`WebSocket server running on port ${PORT}`)
 
 /* ----------------------------------------
    Supabase

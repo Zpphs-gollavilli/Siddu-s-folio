@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd Siddu-S-3D-World && npm run build",
+  "outputDirectory": "Siddu-S-3D-World/dist",
+  "env": {
+    "VITE_SERVER_URL": "@vite_server_url"
+  }
+}
