@@ -1,0 +1,154 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║               QUICK REFERENCE - Deployment Commands                        ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+STEP 1: PUSH TO GITHUB (1 minute)
+─────────────────────────────────────────────────────────────────────────
+
+$ git add .
+$ git commit -m "Deploy: Add Railway and Vercel configurations"
+$ git push origin host-websocket-server
+
+→ Go to: https://github.com/Zpphs-gollavilli/Siddu-s-folio
+→ Verify changes are there on host-websocket-server branch
+
+
+STEP 2: RAILWAY BACKEND (5 minutes)
+─────────────────────────────────────────────────────────────────────────
+
+1. Go to: https://railway.app
+2. Click: New Project → Deploy from GitHub repo
+3. Select: Zpphs-gollavilli/Siddu-s-folio
+4. Branch: host-websocket-server
+5. Root directory: /backend
+6. Railway auto-deploys!
+7. Wait for green checkmark ✅
+8. Go to: Settings → Domains
+9. Click: Generate Domain
+10. SAVE this domain: wss://your-app-name.up.railway.app
+
+
+STEP 3: UPDATE FRONTEND CONFIG (2 minutes)
+─────────────────────────────────────────────────────────────────────────
+
+Edit file: Siddu-S-3D-World/.env.production
+
+Replace:
+  VITE_SERVER_URL=wss://localhost:3001
+
+With your Railway domain:
+  VITE_SERVER_URL=wss://your-app-name.up.railway.app
+
+Then push:
+$ git add Siddu-S-3D-World/.env.production
+$ git commit -m "Update: Production WebSocket URL"
+$ git push origin host-websocket-server
+
+
+STEP 4: VERCEL FRONTEND (5 minutes)
+─────────────────────────────────────────────────────────────────────────
+
+1. Go to: https://vercel.com/dashboard
+2. Click: Add New → Project
+3. Click: Import Git Repository
+4. Select: Zpphs-gollavilli/Siddu-s-folio
+5. Configure:
+   Framework: Vite
+   Root Directory: ./Siddu-S-3D-World
+   Build Command: npm run build
+   Output Directory: dist
+6. Add Environment Variables:
+   Name: VITE_SERVER_URL
+   Value: wss://your-app-name.up.railway.app
+7. Click: Deploy
+8. Wait for green checkmark ✅
+
+
+STEP 5: TEST YOUR DEPLOYMENT (2 minutes)
+─────────────────────────────────────────────────────────────────────────
+
+Open your Vercel domain: https://your-project.vercel.app
+
+In browser DevTools (F12):
+✅ Check console for "WebSocket connected"
+✅ Page loads without errors
+✅ 3D world renders
+✅ Real-time features work
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+IMPORTANT LINKS
+─────────────────────────────────────────────────────────────────────────
+
+Railway Dashboard:    https://railway.app/dashboard
+Vercel Dashboard:     https://vercel.com/dashboard
+GitHub Repo:          https://github.com/Zpphs-gollavilli/Siddu-s-folio
+Branch:               host-websocket-server
+
+
+ENVIRONMENT VARIABLES
+─────────────────────────────────────────────────────────────────────────
+
+Backend (.env):
+  PORT=3001 (Railway auto-assigns)
+  SUPABASE_URL=***
+  SUPABASE_KEY=***
+
+Frontend (.env.production):
+  VITE_SERVER_URL=wss://your-railway-domain.up.railway.app
+
+
+DOMAIN EXAMPLES
+─────────────────────────────────────────────────────────────────────────
+
+Your Railway Backend:
+  wss://siddu-3d-world-prod.up.railway.app
+
+Your Vercel Frontend:
+  https://siddu-3d-world.vercel.app
+
+
+TROUBLESHOOTING
+─────────────────────────────────────────────────────────────────────────
+
+WebSocket not connecting?
+  → Check Railway domain is correct in .env.production
+  → Check Railway is running (green status)
+  → Check Vercel has correct env variable
+
+Page not loading?
+  → Check Vercel root directory is ./Siddu-S-3D-World
+  → Check build command is npm run build
+
+Module errors?
+  → Verify environment variables are set
+  → Check Vercel build logs
+
+Can't find Railway domain?
+  → Railway Dashboard → Your Project → Settings → Domains
+
+
+TIME TRACKER
+─────────────────────────────────────────────────────────────────────────
+
+Step 1 (GitHub):        1 min    Started: ___  Finished: ___
+Step 2 (Railway):       5 min    Started: ___  Finished: ___
+Step 3 (Config):        2 min    Started: ___  Finished: ___
+Step 4 (Vercel):        5 min    Started: ___  Finished: ___
+Step 5 (Test):          2 min    Started: ___  Finished: ___
+                       ────────
+TOTAL:                ~15 min
+
+Railway Domain:    ___________________________________
+Vercel URL:        ___________________________________
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+📖 For more help, see:
+   • DEPLOY_NOW.md (detailed visual guide)
+   • DEPLOYMENT_GUIDE.md (full technical details)
+   • TESTING_GUIDE.md (troubleshooting)
+
+═══════════════════════════════════════════════════════════════════════════

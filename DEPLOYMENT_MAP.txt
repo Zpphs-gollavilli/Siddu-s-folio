@@ -1,0 +1,144 @@
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                   🚀 SIDDU'S 3D PORTFOLIO - DEPLOYMENT MAP 🚀                 ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+YOUR CODE (LOCAL)
+       ↓
+   [GitHub]  ← Push here (git push origin host-websocket-server)
+       ↓
+    ┌──────────────────────────────────────────────────────────────┐
+    │                                                              │
+    ↓                                                              ↓
+┌─────────────────────┐                              ┌─────────────────────┐
+│  RAILWAY (Backend)  │                              │  VERCEL (Frontend)  │
+│                     │                              │                     │
+│ WebSocket Server    │                              │ 3D World            │
+│ /backend folder     │◄───── Uses Railway URL ─────│ /Siddu-S-3D-World   │
+│                     │                              │                     │
+│ Deploy from:        │                              │ Deploy from:        │
+│ Branch: host-ws     │                              │ Branch: host-ws     │
+│ Root: /backend      │                              │ Root: ./Siddu-...   │
+│                     │                              │                     │
+│ Port: Dynamic       │                              │ Build: npm run build│
+│ URL: wss://...      │ ─────WebSocket────────────→ │ Output: dist/       │
+│                     │                              │                     │
+└─────────────────────┘                              └─────────────────────┘
+         ↑                                                      ↑
+         │                                                      │
+         └──────────────────────────────────────────────────────┘
+                    Your Live 3D Portfolio! 🎉
+
+
+════════════════════════════════════════════════════════════════════════════════
+
+STEP-BY-STEP FLOW:
+
+    1. Code Changes → 2. Git Push → 3. Railway Deploy → 4. Vercel Deploy
+       (Local)       (GitHub)      (Backend)          (Frontend)
+         ✓              ✓              ✓                  ✓
+         
+         
+════════════════════════════════════════════════════════════════════════════════
+
+FILE CHECKLIST:
+
+✅ Backend Setup
+   • backend/server.js ...................... Updated to use PORT env
+   • backend/package.json ................... Configure
+   • backend/.env ........................... Contains Supabase keys
+   • backend/Procfile ....................... Railway config
+
+✅ Frontend Setup
+   • Siddu-S-3D-World/.env .................. Dev (localhost)
+   • Siddu-S-3D-World/.env.production ....... Prod (Railway URL)
+   • Siddu-S-3D-World/.env.example .......... Reference template
+   • Siddu-S-3D-World/vite.config.js ........ Build config
+
+✅ Root Configuration
+   • vercel.json ............................ Vercel build settings
+   • Procfile ............................... Railway deployment
+
+✅ Documentation
+   • DEPLOY_NOW.md .......................... 👈 START HERE!
+   • README_DEPLOYMENT.md ................... Overview & links
+   • DEPLOYMENT_GUIDE.md .................... Detailed steps
+   • DEPLOYMENT_CHECKLIST.md ................ Full checklist
+   • DEPLOYMENT_PROGRESS.md ................. Track progress
+   • TESTING_GUIDE.md ....................... Troubleshooting
+
+
+════════════════════════════════════════════════════════════════════════════════
+
+QUICK COMMAND REFERENCE:
+
+Step 1: Git Push
+  $ git add .
+  $ git commit -m "Deploy: Add Railway and Vercel config"
+  $ git push origin host-websocket-server
+
+Step 2: Railway Dashboard
+  https://railway.app/dashboard
+  → Create New → Deploy from GitHub
+  → Select: Zpphs-gollavilli/Siddu-s-folio
+  → Root: /backend
+  → Wait → Copy domain
+
+Step 3: Update Frontend
+  Edit: Siddu-S-3D-World/.env.production
+  VITE_SERVER_URL=wss://YOUR-RAILWAY-DOMAIN
+
+  $ git add Siddu-S-3D-World/.env.production
+  $ git commit -m "Update: Production WebSocket URL"
+  $ git push origin host-websocket-server
+
+Step 4: Vercel Dashboard
+  https://vercel.com/dashboard
+  → Add New → Project
+  → Import Git Repo
+  → Root: ./Siddu-S-3D-World
+  → Env: VITE_SERVER_URL=wss://YOUR-RAILWAY-DOMAIN
+  → Deploy
+
+Step 5: Test & Share!
+  Open: https://YOUR-VERCEL-DOMAIN.vercel.app
+
+
+════════════════════════════════════════════════════════════════════════════════
+
+ENVIRONMENT VARIABLES:
+
+Railway Backend (.env):
+  PORT=3001 (auto-set by Railway)
+  SUPABASE_URL=***
+  SUPABASE_KEY=***
+
+Vercel Frontend (.env.production):
+  VITE_SERVER_URL=wss://your-railway-domain.up.railway.app
+
+
+════════════════════════════════════════════════════════════════════════════════
+
+DOMAIN FORMATS:
+
+Railway Backend:
+  → wss://project-name.up.railway.app
+  → Example: wss://siddu-3d-world.up.railway.app
+
+Vercel Frontend:
+  → https://project-name.vercel.app
+  → Example: https://siddu-3d-world.vercel.app
+
+
+════════════════════════════════════════════════════════════════════════════════
+
+🎯 READY TO DEPLOY? START HERE:
+
+1. Read: DEPLOY_NOW.md
+2. Follow the 6 steps
+3. Monitor logs
+4. TEST! (see TESTING_GUIDE.md)
+5. Share your portfolio! 🎉
+
+
+════════════════════════════════════════════════════════════════════════════════
